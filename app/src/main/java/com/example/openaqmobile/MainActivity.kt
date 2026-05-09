@@ -1,4 +1,4 @@
-package com.example.openaqmobile.presentation
+package com.example.openaqmobile
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
