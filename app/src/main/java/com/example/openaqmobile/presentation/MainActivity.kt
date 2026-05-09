@@ -1,4 +1,4 @@
-package com.example.openaqmobile
+package com.example.openaqmobile.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,36 +12,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.openaqmobile.presentation.theme.OpenAQMobileTheme
+import com.example.openaqmobile.data.OpenAQApiImpl
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        // alustetaan data ja ViewModel
+        // ViewModel saa rajapinnan Interface konstruktorissa
+        val api = OpenAQApiImpl()
+        val viewModel = AirQualityViewModel(api)
+
         setContent {
+            // käytetään siirrettyä teemaa
             OpenAQMobileTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                // kutsutaan päänäkymää ja välitetään ViewModel
+                AirQualityScreen(vm = viewModel)
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    OpenAQMobileTheme {
-        Greeting("Android")
     }
 }
