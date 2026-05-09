@@ -13,8 +13,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.openaqmobile.presentation.theme.OpenAQMobileTheme
 import com.example.openaqmobile.data.OpenAQApiImpl
+import androidx.activity.viewModels
 
 class MainActivity : ComponentActivity() {
+    private val viewModel: AirQualityViewModel by viewModels {
+        AirQualityViewModel.Factory
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
