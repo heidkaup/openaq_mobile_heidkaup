@@ -28,7 +28,7 @@ fun AirQualityScreen(vm: AirQualityViewModel) {
             }
         }
 
-        Button(onClick = { vm.loadData() }) {
+        Button(onClick = { vm.fetchMeasurements() }) {
             Text("Päivitä tiedot")
         }
     }
