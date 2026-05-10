@@ -14,6 +14,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.openaqmobile.presentation.theme.OpenAQMobileTheme
 import com.example.openaqmobile.data.OpenAQApiImpl
 import androidx.activity.viewModels
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 
 class MainActivity : ComponentActivity() {
     private val viewModel: AirQualityViewModel by viewModels {
@@ -24,16 +27,21 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        // alustetaan data ja ViewModel
-        // ViewModel saa rajapinnan Interface konstruktorissa
-        val api = OpenAQApiImpl()
-        val viewModel = AirQualityViewModel(api)
-
         setContent {
             // käytetään siirrettyä teemaa
             OpenAQMobileTheme {
-                // kutsutaan päänäkymää ja välitetään ViewModel
-                AirQualityScreen(vm = viewModel)
+                val navController = rememberNavController()
+
+                NavHost(
+                    navController = navController,
+                    startDestination = "air_quality_list"
+                ) {
+                    composable("air_quality_list") {
+
+                    // kutsutaan päänäkymää ja välitetään ViewModel
+                    AirQualityScreen(vm = viewModel)
+                    }
+                }
             }
         }
     }
