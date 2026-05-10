@@ -52,6 +52,8 @@ dependencies {
     implementation(libs.retrofit.converter.gson)
     implementation("androidx.navigation:navigation-compose:2.9.8")
     testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.11.0")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
