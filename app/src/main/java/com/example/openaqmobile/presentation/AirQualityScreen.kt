@@ -50,12 +50,12 @@ fun AirQualityScreen(vm: AirQualityViewModel) {
                     }
                 }
                 else -> {
-                    // button ruutun alalaitaan
+                    // button ruutu alalaitaan
                     LazyColumn(
                         modifier = Modifier.weight(1f),
                         contentPadding = PaddingValues(vertical = 8.dp)
                     ) {
-                        items(items = state.items, key = { it.id }) { item ->
+                        items(state.items) { item ->
                             Card(
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -67,12 +67,12 @@ fun AirQualityScreen(vm: AirQualityViewModel) {
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     Text(
-                                        text = "${item.parameter}: ",
+                                        text = "${item.measured_at}: ",
                                         style = MaterialTheme.typography.bodyLarge,
                                         color = MaterialTheme.colorScheme.secondary
                                     )
                                     Text(
-                                        text = "${item.value} ${item.unit}",
+                                        text = "${item.value}",
                                         style = MaterialTheme.typography.bodyLarge
                                     )
                                 }
@@ -89,8 +89,19 @@ fun AirQualityScreen(vm: AirQualityViewModel) {
                 onClick = { vm.fetchMeasurements() },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Päivitä tiedot")
+                Text("Päivitä tiedot", style = MaterialTheme.typography.titleMedium)
             }
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                val style = MaterialTheme.typography.bodySmall
+                Text("Heidi Kauppila", style = style)
+                Text("Edistynyt mobiiliohjelmointi", style = style)
+                Text("Kevät 2026", style = style)
+            }
+
         }
     }
 }
