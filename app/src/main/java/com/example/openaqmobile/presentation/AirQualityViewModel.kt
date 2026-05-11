@@ -29,7 +29,7 @@ class AirQualityViewModel(private val api: OpenAQApi) : ViewModel() {
             _state.update { it.copy(loading = true, error = null) }
             try {
                 // käytetään injektoitua APIa datan hakuun
-                val response = api.getMeasurements()
+                val response = api.getMeasurements(4588, "2023-01-01")
                 _state.update { it.copy(loading = false, items = response) }
             } catch (e: Exception) {
                 _state.update { it.copy(loading = false, error = "Virhe: ${e.message}") }

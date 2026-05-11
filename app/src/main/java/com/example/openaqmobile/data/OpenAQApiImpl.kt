@@ -4,7 +4,10 @@ import com.example.openaqmobile.domain.Measurement
 import com.example.openaqmobile.domain.OpenAQApi
 
 class OpenAQApiImpl : OpenAQApi {
-    override suspend fun getMeasurements(): List<Measurement> {
+    override suspend fun getMeasurements(
+        locationId: Int,
+        day: String
+    ): List<Measurement> {
         // palautetaan testausta varten
         return listOf(
             Measurement(1, "Helsinki", "pm10", 22.4, "µg/m³"),

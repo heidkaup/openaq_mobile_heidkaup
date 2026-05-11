@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class OpenAQApplication : Application() {
     val api: OpenAQApi by lazy {
         Retrofit.Builder()
-            .baseUrl("https://api.openaq.org/v3/")
+            .baseUrl("http://10.0.2.2:5000/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(OpenAQApi::class.java)
