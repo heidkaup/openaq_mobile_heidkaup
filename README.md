@@ -14,6 +14,8 @@ Apin ominaisuudet
 - Navigointi
 - ViewModel arkkitehtuuri
 
+Backend (Flask + MySQL) needs to be running locally for full functionality.
+
 Kaupunki: Helsinki  
 Mittauspaikan location_id: 4588
 
