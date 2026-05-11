@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.retrofit.retrofit)
     implementation(libs.retrofit.converter.gson)
     implementation("androidx.navigation:navigation-compose:2.9.8")
+    implementation("androidx.compose.material:material-icons-extended")
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.11.0")
