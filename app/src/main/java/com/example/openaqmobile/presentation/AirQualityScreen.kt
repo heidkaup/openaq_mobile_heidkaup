@@ -25,7 +25,7 @@ fun AirQualityScreen(vm: AirQualityViewModel, onItemClick: (Measurement) -> Unit
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("OpenAQ Mobile - Helsinki") },
+                title = { Text("OpenAQ Mobile") },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
                     titleContentColor = MaterialTheme.colorScheme.primary,
@@ -55,7 +55,14 @@ fun AirQualityScreen(vm: AirQualityViewModel, onItemClick: (Measurement) -> Unit
                     }
                 }
                 else -> {
-                    // button ruutu alalaitaan
+
+                    Text(
+                        text = "Mittaukset Helsingistä",
+                        style = MaterialTheme.typography.titleMedium
+                    )
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
                     LazyColumn(
                         modifier = Modifier.weight(1f),
                         contentPadding = PaddingValues(vertical = 8.dp)
@@ -64,24 +71,27 @@ fun AirQualityScreen(vm: AirQualityViewModel, onItemClick: (Measurement) -> Unit
                             Card(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(vertical = 4.dp)
+                                    .padding(vertical = 6.dp)
                                     .clickable {
                                         onItemClick(item)
                                     },
                                 elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
                             ) {
                                 Row(
-                                    modifier = Modifier.padding(16.dp),
+                                    modifier = Modifier.padding(12.dp),
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     Text(
-                                        text = "${item.measured_at}: ",
-                                        style = MaterialTheme.typography.bodyLarge,
-                                        color = MaterialTheme.colorScheme.secondary
+                                        text = item.measured_at?.substring(5, 16) ?: "",
+                                        style = MaterialTheme.typography.bodyMedium
                                     )
+                                    Spacer(modifier = Modifier.height(4.dp))
+
                                     Text(
-                                        text = "${item.value}",
-                                        style = MaterialTheme.typography.bodyLarge
+                                        text = "%.1f µg/m³".format(item.value),
+                                        style = MaterialTheme.typography.titleMedium,
+                                        color = MaterialTheme.colorScheme.primary
+
                                     )
                                 }
                             }
