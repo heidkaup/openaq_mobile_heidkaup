@@ -35,13 +35,32 @@ class MainActivity : ComponentActivity() {
                     navController = navController,
                     startDestination = "air_quality_list"
                 ) {
+                    // lista
                     composable("air_quality_list") {
+                        AirQualityScreen(
+                            vm = viewModel,
+                            onItemClick = { item ->
+                                navController.navigate(
+                                    "detail/${item.value}/${item.measured_at}"
+                                )
+                            }
+                        )
+                    }
 
-                    // kutsutaan päänäkymää ja välitetään ViewModel
-                    AirQualityScreen(vm = viewModel)
+                    // details
+                    composable("detail/{value}/{time}") { backStackEntry ->
+                        val value = backStackEntry.arguments?.getString("value")
+                        val time = backStackEntry.arguments?.getString("time")
+
+                        DetailScreen(
+                            value = value,
+                            time = time,
+                            onBack = { navController.popBackStack() })
                     }
                 }
             }
         }
     }
 }
+
+

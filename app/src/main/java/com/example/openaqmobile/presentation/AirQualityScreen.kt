@@ -10,10 +10,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.ui.Alignment
+import androidx.compose.foundation.clickable
+import com.example.openaqmobile.domain.Measurement
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AirQualityScreen(vm: AirQualityViewModel) {
+fun AirQualityScreen(vm: AirQualityViewModel, onItemClick: (Measurement) -> Unit
+)
+ {
     val state by vm.state.collectAsStateWithLifecycle()
 
     // yläpalkki ja reunat
@@ -59,7 +64,10 @@ fun AirQualityScreen(vm: AirQualityViewModel) {
                             Card(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(vertical = 4.dp),
+                                    .padding(vertical = 4.dp)
+                                    .clickable {
+                                        onItemClick(item)
+                                    },
                                 elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
                             ) {
                                 Row(
@@ -89,7 +97,7 @@ fun AirQualityScreen(vm: AirQualityViewModel) {
                 onClick = { vm.fetchMeasurements() },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Päivitä tiedot", style = MaterialTheme.typography.titleMedium)
+                Text("Päivitä", style = MaterialTheme.typography.titleMedium)
             }
 
             Spacer(modifier = Modifier.height(8.dp))
